@@ -1,26 +1,26 @@
-require 'formula'
-
 class Yodl < Formula
-  url 'http://downloads.sourceforge.net/project/yodl/yodl/3.05.01/yodl_3.05.01.orig.tar.gz'
-  homepage 'http://yodl.sourceforge.net/'
-  sha1 '94d8e59a8569a9d6fb4dc7a1b8e7d430f018e570'
+  desc "Your Own Documentation Language"
+  homepage "http://yodl.sourceforge.net/"
+  url "https://downloads.sourceforge.net/project/yodl/yodl/3.05.01/yodl_3.05.01.orig.tar.gz"
+  sha256 "5a3d0e1b2abbba87217cfdc6cd354a00df8d782572495bbddbdfbd4f47fe0d3e"
 
   depends_on "ghostscript"
   depends_on "icmake"
+  depends_on "gnu-sed"
 
   patch :DATA
 
   def install
-    inreplace 'INSTALL.im', /"\/usr"/, "\"#{prefix}\""
-    inreplace 'build', /\/usr\/bin\/icmake/, "/usr\/local\/bin\/icmake"
+    inreplace "INSTALL.im", %r{"/usr"}, "\"#{prefix}\""
+    inreplace "build", %r{/usr/bin/icmake}, "/usr\/local\/bin\/icmake"
 
-    if `/usr/bin/which gsed` then
-      opoo 'Using gnu-sed'
-      inreplace 'scripts/configreplacements', 'sed', 'gsed'
+    if `/usr/bin/which gsed`
+      opoo "Using gnu-sed"
+      inreplace "scripts/configreplacements", "sed", "gsed"
     end
 
     # To also copy .dSYM directories, use recursive copy.
-    inreplace 'icmake/install', /run\("cp " \+ g_install \+ BIN/, 'run("cp -R " + g_install + BIN'
+    inreplace "icmake/install", /run\("cp " \+ g_install \+ BIN/, 'run("cp -R " + g_install + BIN'
 
     system "./build", "programs"
     system "./build", "macros"
@@ -29,7 +29,7 @@ class Yodl < Formula
     system "./build", "install", "programs"
     system "./build", "install", "macros"
     system "./build", "install", "man"
-    unless `/usr/bin/which latex` then
+    unless `/usr/bin/which latex`
       system "./build", "manual"
       system "./build", "install", "manual"
     end
