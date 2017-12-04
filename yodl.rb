@@ -3,7 +3,7 @@ require 'formula'
 class Yodl < Formula
   url 'http://downloads.sourceforge.net/project/yodl/yodl/3.05.01/yodl_3.05.01.orig.tar.gz'
   homepage 'http://yodl.sourceforge.net/'
-  sha1 '94d8e59a8569a9d6fb4dc7a1b8e7d430f018e570'
+  sha256 '5a3d0e1b2abbba87217cfdc6cd354a00df8d782572495bbddbdfbd4f47fe0d3e'
 
   depends_on "ghostscript"
   depends_on "icmake"
