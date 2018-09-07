@@ -3,7 +3,7 @@ require 'formula'
 class Icmake < Formula
   url 'http://downloads.sourceforge.net/project/icmake/icmake/7.22.01/icmake_7.22.01.orig.tar.gz'
   homepage 'http://icmake.sourceforge.net/'
-  sha1 'f10be7bfeb905ed12523738b41a0f040ee403771'
+  sha256 'b522e7937e9d4f0bec738dfce371673e3c4a8bc9f4d209a51631e5ed59ba66c7'
 
   depends_on 'gnu-sed'
 
